@@ -1,0 +1,31 @@
+# Local deployment.
+#
+#   docker compose up --build          # serve — trains the model and builds
+#                                       # the retrieval index automatically
+#                                       # on first boot if they don't exist
+#                                       # yet (see start.sh), then serves.
+#
+#   docker compose run --rm app python -m retrieval.build_index --limit 2000
+#                                       # re-run manually any time you want
+#                                       # a bigger/fresher index than the
+#                                       # default on-boot --limit 2000
+#
+# The whole project directory is bind-mounted over the image's copy, so
+# artifacts produced on boot (saved_model.keras, saved_model/,
+# retrieval/local_index/) land on the host and survive `docker compose
+# down` / rebuilds — start.sh only (re)trains when they're missing.
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:7860"
+    environment:
+      - PORT=7860
+      - PINECONE_API_KEY=${PINECONE_API_KEY:-}
+      - PINECONE_INDEX_NAME=${PINECONE_INDEX_NAME:-market-signal-headlines}
+      - PINECONE_CLOUD=${PINECONE_CLOUD:-aws}
+      - PINECONE_REGION=${PINECONE_REGION:-us-east-1}
+    volumes:
+      - .:/app
+    restart: unless-stopped

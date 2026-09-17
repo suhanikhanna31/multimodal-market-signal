@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.git/
+.gitignore
+*.egg-info/
+.venv/
+venv/
+saved_model/
+saved_model.keras
+retrieval/local_index/
+.env
