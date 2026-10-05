@@ -2,7 +2,6 @@
 
 # Multimodal Market Signal
 
-[![CI/CD](https://github.com/OWNER/multimodal-market-signal/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/multimodal-market-signal/actions/workflows/ci.yml)
 
 A small, from-scratch TensorFlow project that fuses **text** (financial
 headlines) and **numeric time-series** (price/volume-derived features) to
@@ -12,9 +11,6 @@ implementation of DPO (preference-based fine-tuning), and a local-first
 deployment/CI setup on top of the same model.
 
 This exists as a standalone learning/portfolio project.
-
-> Replace `OWNER` in the badge URL above with your GitHub username/org once
-> this is pushed, so the badge points at your own Actions run.
 
 ## Why this shape
 
